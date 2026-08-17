@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loadmaxx — Industrial Load Transport | Mumbai · Pune · All India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15151a;
+    --ink-soft:#2a2a32;
+    --paper:#f2efe4;
+    --paper-dim:#e8e3d3;
+    --magenta:#e6007e;
+    --magenta-dark:#9c0057;
+    --hazard:#ffc400;
+    --steel:#6b6f76;
+    --line:#d8d2bd;
+    --max-w:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.disp{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 28px;}
+
+  /* hazard stripe */
+  .hazard-strip{
+    height:10px;
+    background:repeating-linear-gradient(135deg,var(--ink) 0 18px,var(--hazard) 18px 36px);
+  }
+
+  /* header */
+  header{padding:22px 0 18px;border-bottom:1px solid var(--line);}
+  .head-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .logo-block{display:flex;flex-direction:column;line-height:1;}
+  .wordmark{
+    font-size:clamp(28px,4vw,38px);
+    font-weight:700;
+    color:var(--magenta);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .wordmark svg{width:0.7em;height:0.7em;}
+  .tagline{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--steel);
+    margin-top:4px;
+    text-transform:uppercase;
+  }
+  .head-contact{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    text-align:right;
+    color:var(--ink-soft);
+  }
+  .head-contact a{border-bottom:1px solid transparent;}
+  .head-contact a:hover{border-color:var(--magenta);color:var(--magenta);}
+
+  /* hero */
+  .hero{padding:64px 0 40px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:48px;align-items:center;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    color:var(--magenta-dark);
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--magenta);}
+  .hero h1{
+    font-size:clamp(38px,5.2vw,58px);
+    line-height:1.03;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .hero h1 span{color:var(--magenta);}
+  .hero p.lede{
+    margin-top:20px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .cta-row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;align-items:center;}
+  .btn-whatsapp{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--magenta);
+    color:#fff;
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:14.5px;
+    letter-spacing:0.03em;
+    padding:15px 24px;
+    border-radius:3px;
+    box-shadow:4px 4px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-whatsapp:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+  .btn-whatsapp svg{width:18px;height:18px;flex-shrink:0;}
+  .call-link{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    border-bottom:1px dashed var(--steel);
+    padding-bottom:2px;
+  }
+  .call-link:hover{color:var(--magenta);border-color:var(--magenta);}
+
+  /* route diagram */
+  .route-card{
+    background:var(--ink);
+    border-radius:4px;
+    padding:34px 28px 30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .route-card::before{
+    content:"ROUTE";
+    position:absolute;
+    top:14px;right:18px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.2em;
+    color:#5a5a63;
+  }
+  .route-svg{width:100%;height:auto;display:block;margin-top:10px;}
+  .route-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    fill:#c8c6bd;
+    letter-spacing:0.04em;
+  }
+  .route-city{
+    font-family:'Oswald',sans-serif;
+    font-size:15px;
+    fill:#f2efe4;
+    font-weight:600;
+    text-transform:uppercase;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .truck-move{animation:travel 7s linear infinite;}
+  }
+  @keyframes travel{
+    0%{offset-distance:0%;}
+    100%{offset-distance:100%;}
+  }
+
+  /* services */
+  .services{padding:54px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .services-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:34px;}
+  .services-head h2{font-size:clamp(24px,3vw,32px);font-weight:600;}
+  .services-head .mono{font-size:12px;color:var(--steel);letter-spacing:0.08em;}
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .service-cell{background:var(--paper);padding:26px 20px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;}
+  .service-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--magenta);}
+  .service-cell h3{font-size:16px;margin-top:20px;font-weight:600;letter-spacing:0.01em;}
+  .service-cell p{font-size:13px;color:var(--steel);margin-top:6px;line-height:1.5;}
+
+  /* trusted customers - stamp seals */
+  .trusted{padding:60px 0 64px;}
+  .trusted-head{margin-bottom:36px;}
+  .trusted-head h2{font-size:clamp(24px,3vw,32px);font-weight:600;}
+  .trusted-head p{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--steel);margin-top:8px;letter-spacing:0.05em;}
+  /* trusted customers - manifest ledger */
+  .manifest{
+    display:grid;grid-template-columns:1fr 1fr;column-gap:48px;
+  }
+  .manifest-row{
+    display:flex;align-items:baseline;gap:12px;
+    padding:15px 2px;border-top:1px solid var(--line);
+  }
+  .manifest-row:last-child{border-bottom:1px solid var(--line);}
+  .mno{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--magenta);
+    width:22px;flex-shrink:0;
+  }
+  .mname{
+    font-family:'Oswald',sans-serif;font-size:16.5px;font-weight:500;
+    text-transform:uppercase;letter-spacing:0.01em;white-space:nowrap;color:var(--ink);
+    transition:color .15s ease;
+  }
+  .mleader{
+    flex:1;min-width:16px;border-bottom:1px dotted var(--steel);
+    transform:translateY(-5px);
+  }
+  .mtag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--steel);
+    letter-spacing:0.05em;text-transform:uppercase;flex-shrink:0;
+    transition:color .15s ease;
+  }
+  .manifest-row:hover .mname{color:var(--magenta);}
+  .manifest-row:hover .mtag{color:var(--magenta-dark);}
+  .manifest-row.more .mname{color:var(--steel);font-style:normal;}
+  .manifest-row.more .mleader{border-style:solid;opacity:.4;}
+
+  /* consignment / contact */
+  .consignment{padding:20px 0 76px;}
+  .note{
+    background:var(--paper-dim);
+    border:1px solid var(--ink);
+    position:relative;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+  }
+  .note::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;top:0;
+    height:0;
+    border-top:1px dashed var(--ink);
+    opacity:0;
+  }
+  .note-main{padding:38px 36px;border-right:1px dashed var(--steel);}
+  .note-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    color:var(--steel);
+    text-transform:uppercase;
+    display:flex;justify-content:space-between;
+  }
+  .note-main h2{font-size:clamp(24px,3vw,30px);font-weight:600;margin-top:14px;max-width:22ch;}
+  .fields{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
+  .field label{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    letter-spacing:0.1em;color:var(--steel);text-transform:uppercase;margin-bottom:4px;
+  }
+  .field .val{font-size:14.5px;color:var(--ink);}
+  .field .val a:hover{color:var(--magenta);}
+  .note-side{
+    padding:38px 30px;
+    display:flex;flex-direction:column;
+    justify-content:space-between;
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .stamp{
+    width:96px;height:96px;
+    border:2px solid var(--magenta);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--magenta);
+    font-family:'Oswald',sans-serif;
+    font-size:12px;
+    text-align:center;
+    line-height:1.2;
+    font-weight:600;
+    letter-spacing:0.05em;
+    transform:rotate(-8deg);
+    margin-bottom:22px;
+  }
+  .note-side .mono{font-size:12px;color:#a9a7a0;line-height:1.6;}
+  .note-cta{margin-top:22px;}
+  .note-cta .btn-whatsapp{box-shadow:4px 4px 0 var(--magenta-dark);width:100%;justify-content:center;}
+  .note-cta .btn-whatsapp:hover{box-shadow:6px 6px 0 var(--magenta-dark);}
+
+  /* interactive quote builder */
+  .field.wide{grid-column:1/-1;}
+  .val-input{
+    border:none;background:transparent;font-family:'IBM Plex Sans',sans-serif;
+    font-size:14.5px;color:var(--ink);width:100%;
+    border-bottom:1px dashed var(--line);padding-bottom:3px;
+  }
+  .val-input:focus{outline:none;border-color:var(--magenta);}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .chip{
+    border:1px solid var(--ink);background:transparent;color:var(--ink);
+    padding:7px 13px;border-radius:20px;font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;cursor:pointer;transition:all .15s ease;text-align:left;line-height:1.3;
+  }
+  .chip .cap{display:block;font-size:9px;color:var(--steel);margin-top:1px;}
+  .chip:hover{border-color:var(--magenta);}
+  .chip.active{background:var(--magenta);border-color:var(--magenta);color:#fff;}
+  .chip.active .cap{color:#ffd6ec;}
+  .slider-row{display:flex;align-items:center;gap:14px;margin-top:8px;}
+  input[type=range]{flex:1;accent-color:var(--magenta);}
+  .weight-badge{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--ink);
+    color:var(--paper);padding:4px 10px;border-radius:3px;min-width:56px;text-align:center;
+  }
+  .sent-note{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--steel);
+    margin-top:10px;opacity:0;transition:opacity .2s ease;
+  }
+  .sent-note.show{opacity:1;}
+
+  /* faq */
+  .faq{padding:10px 0 60px;}
+  .faq-head h2{font-size:clamp(24px,3vw,32px);font-weight:600;margin-bottom:28px;}
+  .faq-item{border-top:1px solid var(--line);}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+    background:none;border:none;padding:18px 2px;font-family:'Oswald',sans-serif;
+    font-size:16px;text-transform:none;letter-spacing:0;color:var(--ink);
+    cursor:pointer;text-align:left;
+  }
+  .faq-q .plus{
+    font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--magenta);
+    transition:transform .2s ease;flex-shrink:0;
+  }
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{padding:0 2px 18px;font-size:14px;color:var(--ink-soft);line-height:1.6;max-width:62ch;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0 34px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  }
+  footer .mono{font-size:11.5px;color:var(--steel);letter-spacing:0.04em;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .note{grid-template-columns:1fr;}
+    .note-main{border-right:none;border-bottom:1px dashed var(--steel);}
+    .head-contact{text-align:left;}
+  }
+  @media (max-width:640px){
+    .manifest{grid-template-columns:1fr;}
+  }
+  @media (max-width:520px){
+    .service-grid{grid-template-columns:1fr;}
+    .fields{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hazard-strip"></div>
+
+<header>
+  <div class="wrap head-row">
+    <div class="logo-block">
+      <div class="wordmark">LOADMAXX
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 19L19 5M19 5H8M19 5V16"/></svg>
+      </div>
+      <div class="tagline">Moving. Trust. Forward.</div>
+    </div>
+    <div class="head-contact">
+      <div><a href="tel:+917387742294">Suraj — 73877 42294</a></div>
+      <div><a href="tel:+919702698543">97026 98543</a></div>
+      <div><a href="mailto:loadmaxx07@gmail.com">loadmaxx07@gmail.com</a></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Specialist in industrial loads</div>
+      <h1>Heavy cargo,<br>handled like it<br><span>matters.</span></h1>
+      <p class="lede">Loadmaxx moves industrial and project loads across Mumbai, Pune and all over India — booked, tracked and delivered by a team that treats every consignment like its own.</p>
+      <div class="cta-row">
+        <a class="btn-whatsapp js-wa-link" id="heroWaBtn" href="https://wa.me/917387742294?text=Hey..!%20Can%20u%20share%20the%20rate%20chart" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38c1.44.79 3.06 1.2 4.79 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2zm0 18.13h-.01c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.35c0-4.53 3.69-8.22 8.23-8.22a8.18 8.18 0 015.82 2.41 8.16 8.16 0 012.41 5.81c0 4.54-3.7 8.22-8.15 8.22zm4.51-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.11-.23-.17-.48-.29z"/></svg>
+          Get rate chart on WhatsApp
+        </a>
+        <a class="call-link" href="tel:+919702698543">or call 97026 98543 →</a>
+      </div>
+      <div class="sent-note" id="heroSentNote">Fill the quote builder below and this button sends your exact requirement to Suraj.</div>
+    </div>
+
+    <div class="route-card">
+      <svg class="route-svg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+        <path id="routepath" d="M40,60 C120,60 90,150 190,150 C300,150 260,240 380,240" fill="none" stroke="#3a3a44" stroke-width="2" stroke-dasharray="6 7"/>
+        <circle cx="40" cy="60" r="5" fill="#e6007e"/>
+        <text x="54" y="55" class="route-city">Mumbai</text>
+        <text x="54" y="72" class="route-label">Origin hub</text>
+
+        <circle cx="190" cy="150" r="5" fill="#ffc400"/>
+        <text x="204" y="145" class="route-city">Pune</text>
+        <text x="204" y="162" class="route-label">Transit point</text>
+
+        <circle cx="380" cy="240" r="5" fill="#e6007e"/>
+        <text x="300" y="270" class="route-city">All India</text>
+        <text x="300" y="286" class="route-label">Pan-India delivery</text>
+
+        <g class="truck-move" style="offset-path:path('M40,60 C120,60 90,150 190,150 C300,150 260,240 380,240'); offset-rotate:auto;">
+          <g transform="translate(-9,-9)">
+            <rect x="0" y="4" width="14" height="10" rx="1.5" fill="#f2efe4"/>
+            <rect x="13" y="7" width="6" height="7" rx="1" fill="#f2efe4"/>
+            <circle cx="4" cy="16" r="2" fill="#e6007e"/>
+            <circle cx="15" cy="16" r="2" fill="#e6007e"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <div class="services-head">
+      <h2>What we haul</h2>
+      <div class="mono">MUMBAI · PUNE · ALL OVER INDIA</div>
+    </div>
+    <div class="service-grid">
+      <div class="service-cell">
+        <span class="service-num">01</span>
+        <div>
+          <h3>Industrial machinery</h3>
+          <p>Plant equipment, engineering loads and factory relocations.</p>
+        </div>
+      </div>
+      <div class="service-cell">
+        <span class="service-num">02</span>
+        <div>
+          <h3>Odd &amp; over-dimension</h3>
+          <p>Oversized and irregular loads planned route-first, not last.</p>
+        </div>
+      </div>
+      <div class="service-cell">
+        <span class="service-num">03</span>
+        <div>
+          <h3>Full &amp; part truckloads</h3>
+          <p>FTL and PTL dispatch across Mumbai–Pune and pan-India lanes.</p>
+        </div>
+      </div>
+      <div class="service-cell">
+        <span class="service-num">04</span>
+        <div>
+          <h3>Project logistics</h3>
+          <p>End-to-end coordination for time-sensitive industrial moves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trusted">
+  <div class="wrap">
+    <div class="trusted-head">
+      <h2>Trusted by transporters &amp; logistics partners</h2>
+      <p class="mono">A FEW OF THE COMPANIES ON OUR MANIFEST</p>
+    </div>
+    <div class="manifest">
+      <div class="manifest-row"><span class="mno">01</span><span class="mname">RPL Logistic</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row"><span class="mno">02</span><span class="mname">Aditya Transport</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row"><span class="mno">03</span><span class="mname">Shree Vitthal Transport</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row"><span class="mno">04</span><span class="mname">Choudhary Transport</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row"><span class="mno">05</span><span class="mname">Arpit Logistics</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row"><span class="mno">06</span><span class="mname">Gujrat Roadways</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row"><span class="mno">07</span><span class="mname">Darshana Transport</span><span class="mleader"></span><span class="mtag">Active</span></div>
+      <div class="manifest-row more"><span class="mno">08</span><span class="mname">+ many more</span><span class="mleader"></span><span class="mtag">&nbsp;</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-head"><h2>Before you book</h2></div>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q"><span>What documents do I need to hand over the load?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>An invoice or delivery challan, consignee address and GST details if applicable. For odd or over-dimension cargo, share drawings or photos on WhatsApp so Suraj can plan the right vehicle and route permits.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How is the rate calculated?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Rates depend on distance, truck type, weight and whether the load needs special handling. Use the quote builder below — Suraj will confirm the exact rate on WhatsApp, usually within minutes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you handle loading and unloading?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We coordinate hydraulic and crane support for heavy industrial loads on request. Mention this when you send your quote so the right equipment is arranged in advance.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What are the payment terms?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Standard terms are discussed and confirmed per consignment at the time of booking, based on route and load type. Ask Suraj directly for terms on your specific lane.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="consignment" id="contact">
+  <div class="wrap">
+    <div class="note">
+      <div class="note-main">
+        <div class="note-tag"><span>Build your quote</span><span>No. LM-01</span></div>
+        <h2>Tell us what's moving.</h2>
+        <div class="fields">
+          <div class="field">
+            <label>From</label>
+            <input class="val val-input" id="qFrom" list="cityList" value="Mumbai" autocomplete="off">
+          </div>
+          <div class="field">
+            <label>To</label>
+            <input class="val val-input" id="qTo" list="cityList" placeholder="Destination city" autocomplete="off">
+          </div>
+          <datalist id="cityList"></datalist>
+
+          <div class="field wide">
+            <label>Load type</label>
+            <div class="chips" id="loadChips"></div>
+          </div>
+
+          <div class="field wide">
+            <label>Truck type</label>
+            <div class="chips" id="truckChips"></div>
+          </div>
+
+          <div class="field wide">
+            <label>Approx weight</label>
+            <div class="slider-row">
+              <input type="range" id="qWeight" min="1" max="40" value="10">
+              <span class="weight-badge"><span id="weightVal">10</span> MT</span>
+            </div>
+          </div>
+
+          <div class="field"><label>Phone</label><div class="val"><a href="tel:+917387742294">73877 42294</a></div></div>
+          <div class="field"><label>Email</label><div class="val"><a href="mailto:loadmaxx07@gmail.com">loadmaxx07@gmail.com</a></div></div>
+        </div>
+      </div>
+      <div class="note-side">
+        <div>
+          <div class="stamp">TRUSTED<br>CARRIER</div>
+          <p class="mono">Your selections build the message on the right — one tap sends the exact requirement to Suraj on WhatsApp.</p>
+        </div>
+        <div class="note-cta">
+          <a class="btn-whatsapp js-wa-link" id="noteWaBtn" href="https://wa.me/917387742294?text=Hey..!%20Can%20u%20share%20the%20rate%20chart" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38c1.44.79 3.06 1.2 4.79 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2zm0 18.13h-.01c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.35c0-4.53 3.69-8.22 8.23-8.22a8.18 8.18 0 015.82 2.41 8.16 8.16 0 012.41 5.81c0 4.54-3.7 8.22-8.15 8.22zm4.51-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.11-.23-.17-.48-.29z"/></svg>
+            Message on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div class="mono">© 2026 LOADMAXX — INDUSTRIAL LOAD TRANSPORT</div>
+    <div class="mono">MUMBAI · PUNE · ALL OVER INDIA</div>
+  </div>
+</footer>
+<div class="hazard-strip"></div>
+
+<script>
+(function(){
+  var PHONE = "917387742294";
+
+  var cities = ["Mumbai","Pune","Nashik","Nagpur","Aurangabad","Delhi","Bengaluru","Ahmedabad","Surat","Indore","Hyderabad","Chennai","Kolkata"];
+  var cityList = document.getElementById('cityList');
+  cities.forEach(function(c){
+    var o = document.createElement('option'); o.value = c; cityList.appendChild(o);
+  });
+
+  var loadTypes = ["Industrial Machinery","Odd & Over-dimension","Full Truckload","Part Truckload","Project Cargo"];
+  var truckTypes = [
+    {label:"Open Body", cap:"up to 9T"},
+    {label:"Container", cap:"up to 16T"},
+    {label:"Trailer", cap:"up to 25T"},
+    {label:"Multi-axle", cap:"up to 35T"},
+    {label:"Hydraulic Axle", cap:"100T+"}
+  ];
+
+  var state = { loadType: loadTypes[2], truckType: truckTypes[0].label };
+
+  function buildChips(container, items, isTruck){
+    items.forEach(function(item, i){
+      var label = isTruck ? item.label : item;
+      var btn = document.createElement('button');
+      btn.type = "button";
+      btn.className = "chip" + (i === 0 ? " active" : "");
+      btn.innerHTML = isTruck ? (label + '<span class="cap">' + item.cap + '</span>') : label;
+      btn.addEventListener('click', function(){
+        Array.prototype.forEach.call(container.children, function(c){ c.classList.remove('active'); });
+        btn.classList.add('active');
+        if (isTruck) state.truckType = label; else state.loadType = label;
+        updateMessage();
+      });
+      container.appendChild(btn);
+    });
+  }
+  buildChips(document.getElementById('loadChips'), loadTypes, false);
+  buildChips(document.getElementById('truckChips'), truckTypes, true);
+
+  var qFrom = document.getElementById('qFrom');
+  var qTo = document.getElementById('qTo');
+  var qWeight = document.getElementById('qWeight');
+  var weightVal = document.getElementById('weightVal');
+
+  function updateMessage(){
+    var from = qFrom.value.trim() || "Mumbai";
+    var to = qTo.value.trim() || "All India";
+    var weight = qWeight.value;
+    weightVal.textContent = weight;
+
+    var msg = "Hey..! I need a rate quote.\n" +
+      "From: " + from + "\n" +
+      "To: " + to + "\n" +
+      "Load type: " + state.loadType + "\n" +
+      "Truck type: " + state.truckType + "\n" +
+      "Approx weight: " + weight + " MT";
+
+    var href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
+    document.querySelectorAll('.js-wa-link').forEach(function(a){ a.href = href; });
+
+    var sentNote = document.getElementById('heroSentNote');
+    sentNote.classList.add('show');
+  }
+
+  [qFrom, qTo, qWeight].forEach(function(el){
+    el.addEventListener('input', updateMessage);
+  });
+
+  updateMessage();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + "px";
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
