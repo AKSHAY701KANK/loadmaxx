@@ -9,15 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#15151a;
-    --ink-soft:#2a2a32;
-    --paper:#f2efe4;
-    --paper-dim:#e8e3d3;
-    --magenta:#e6007e;
-    --magenta-dark:#9c0057;
-    --hazard:#ffc400;
-    --steel:#6b6f76;
-    --line:#d8d2bd;
+    --ink:#0d1b2e;
+    --ink-soft:#1b2f47;
+    --paper:#f3f5f7;
+    --paper-dim:#e6eaee;
+    --magenta:#0b5fff;
+    --magenta-dark:#06377a;
+    --hazard:#ff6a00;
+    --steel:#6b7280;
+    --line:#d7dde3;
+    --green:#16a34a;
+    --red:#dc2626;
     --max-w:1160px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -108,7 +110,7 @@
     display:inline-flex;
     align-items:center;
     gap:10px;
-    background:var(--magenta);
+    background:linear-gradient(160deg, var(--magenta) 0%, var(--magenta-dark) 100%);
     color:#fff;
     font-family:'IBM Plex Mono',monospace;
     font-weight:600;
@@ -128,7 +130,7 @@
     border-bottom:1px dashed var(--steel);
     padding-bottom:2px;
   }
-  .call-link:hover{color:var(--magenta);border-color:var(--magenta);}
+  .call-link:hover{color:var(--red);border-color:var(--red);}
 
   /* route diagram */
   .route-card{
@@ -208,14 +210,16 @@
     transform:translateY(-5px);
   }
   .mtag{
-    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--steel);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green);
     letter-spacing:0.05em;text-transform:uppercase;flex-shrink:0;
     transition:color .15s ease;
   }
+  .mtag::before{content:"● ";}
   .manifest-row:hover .mname{color:var(--magenta);}
-  .manifest-row:hover .mtag{color:var(--magenta-dark);}
+  .manifest-row:hover .mtag{color:var(--green);}
   .manifest-row.more .mname{color:var(--steel);font-style:normal;}
   .manifest-row.more .mleader{border-style:solid;opacity:.4;}
+  .manifest-row.more .mtag::before{content:"";}
 
   /* consignment / contact */
   .consignment{padding:20px 0 76px;}
@@ -363,7 +367,7 @@
       <div class="tagline">Moving. Trust. Forward.</div>
     </div>
     <div class="head-contact">
-      <div><a href="tel:+917387742294">Suraj Zanzane — 73877 42294</a></div>
+      <div><a href="tel:+917387742294">Suraj — 73877 42294</a></div>
       <div><a href="tel:+919702698543">97026 98543</a></div>
       <div><a href="mailto:loadmaxx07@gmail.com">loadmaxx07@gmail.com</a></div>
     </div>
@@ -379,25 +383,25 @@
       <div class="cta-row">
         <a class="btn-whatsapp js-wa-link" id="heroWaBtn" href="https://wa.me/917387742294?text=Hey..!%20Can%20u%20share%20the%20rate%20chart" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38c1.44.79 3.06 1.2 4.79 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2zm0 18.13h-.01c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.35c0-4.53 3.69-8.22 8.23-8.22a8.18 8.18 0 015.82 2.41 8.16 8.16 0 012.41 5.81c0 4.54-3.7 8.22-8.15 8.22zm4.51-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.11-.23-.17-.48-.29z"/></svg>
-          Enquire with us on WhatsApp
+          Get rate chart on WhatsApp
         </a>
         <a class="call-link" href="tel:+919702698543">or call 97026 98543 →</a>
       </div>
-      <div class="sent-note" id="heroSentNote">Fill the quote builder below and this button sends your exact requirement to Suraj Zanzane.</div>
+      <div class="sent-note" id="heroSentNote">Fill the quote builder below and this button sends your exact requirement to Suraj.</div>
     </div>
 
     <div class="route-card">
       <svg class="route-svg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
         <path id="routepath" d="M40,60 C120,60 90,150 190,150 C300,150 260,240 380,240" fill="none" stroke="#3a3a44" stroke-width="2" stroke-dasharray="6 7"/>
-        <circle cx="40" cy="60" r="5" fill="#e6007e"/>
+        <circle cx="40" cy="60" r="5" fill="#0b5fff"/>
         <text x="54" y="55" class="route-city">Mumbai</text>
         <text x="54" y="72" class="route-label">Origin hub</text>
 
-        <circle cx="190" cy="150" r="5" fill="#ffc400"/>
+        <circle cx="190" cy="150" r="5" fill="#ff6a00"/>
         <text x="204" y="145" class="route-city">Pune</text>
         <text x="204" y="162" class="route-label">Transit point</text>
 
-        <circle cx="380" cy="240" r="5" fill="#e6007e"/>
+        <circle cx="380" cy="240" r="5" fill="#0b5fff"/>
         <text x="300" y="270" class="route-city">All India</text>
         <text x="300" y="286" class="route-label">Pan-India delivery</text>
 
@@ -405,8 +409,8 @@
           <g transform="translate(-9,-9)">
             <rect x="0" y="4" width="14" height="10" rx="1.5" fill="#f2efe4"/>
             <rect x="13" y="7" width="6" height="7" rx="1" fill="#f2efe4"/>
-            <circle cx="4" cy="16" r="2" fill="#e6007e"/>
-            <circle cx="15" cy="16" r="2" fill="#e6007e"/>
+            <circle cx="4" cy="16" r="2" fill="#ff6a00"/>
+            <circle cx="15" cy="16" r="2" fill="#ff6a00"/>
           </g>
         </g>
       </svg>
@@ -478,11 +482,11 @@
     <div id="faqList">
       <div class="faq-item">
         <button class="faq-q"><span>What documents do I need to hand over the load?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>An invoice or delivery challan, consignee address and GST details if applicable. For odd or over-dimension cargo, share drawings or photos on WhatsApp so Suraj Zanzane can plan the right vehicle and route permits.</p></div>
+        <div class="faq-a"><p>An invoice or delivery challan, consignee address and GST details if applicable. For odd or over-dimension cargo, share drawings or photos on WhatsApp so Suraj can plan the right vehicle and route permits.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>How is the rate calculated?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Rates depend on distance, truck type, weight and whether the load needs special handling. Use the quote builder below — Suraj Zanzane will confirm the exact rate on WhatsApp, usually within minutes.</p></div>
+        <div class="faq-a"><p>Rates depend on distance, truck type, weight and whether the load needs special handling. Use the quote builder below — Suraj will confirm the exact rate on WhatsApp, usually within minutes.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Do you handle loading and unloading?</span><span class="plus">+</span></button>
@@ -490,7 +494,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>What are the payment terms?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Standard terms are discussed and confirmed per consignment at the time of booking, based on route and load type. Ask Suraj Zanzane directly for terms on your specific lane.</p></div>
+        <div class="faq-a"><p>Standard terms are discussed and confirmed per consignment at the time of booking, based on route and load type. Ask Suraj directly for terms on your specific lane.</p></div>
       </div>
     </div>
   </div>
@@ -538,7 +542,7 @@
       <div class="note-side">
         <div>
           <div class="stamp">TRUSTED<br>CARRIER</div>
-          <p class="mono">Your selections build the message on the right — one tap sends the exact requirement to Suraj Zanzane on WhatsApp.</p>
+          <p class="mono">Your selections build the message on the right — one tap sends the exact requirement to Suraj on WhatsApp.</p>
         </div>
         <div class="note-cta">
           <a class="btn-whatsapp js-wa-link" id="noteWaBtn" href="https://wa.me/917387742294?text=Hey..!%20Can%20u%20share%20the%20rate%20chart" target="_blank" rel="noopener">
